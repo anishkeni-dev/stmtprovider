@@ -1,4 +1,4 @@
-import 'model/datamodel.dart';
+import 'provider/datamodel.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 

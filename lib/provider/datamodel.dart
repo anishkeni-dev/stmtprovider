@@ -5,13 +5,17 @@ class DataModel{
   String title;
   String rating;
   String desc;
+  bool isincart;
 
   DataModel({required this.id,
     required this.title,
     required this.price,
     required this.image,
     required this.rating,
-    required this.desc,});
+    required this.desc,
+    this.isincart = false,
+
+  });
 
 
   factory DataModel.fromJson(Map<String,dynamic> json){
