@@ -14,6 +14,7 @@ class Data extends ChangeNotifier{
     notifyListeners();
   }
   late List<DataModel> cartlistbyid = [];
+  late List<DataModel> wishlistbyid = [];
   late double carttotal = 0;
 
  addtocart(element){
@@ -30,6 +31,16 @@ class Data extends ChangeNotifier{
    carttotal = carttotal - productprice;
    notifyListeners();
  }
+  addtowishlist(product){
+    wishlistbyid.add(product);
+    product.isincart= true;
+    notifyListeners();
+  }
+  removefromwishlist(element){
+    wishlistbyid.remove(element);
+    element.isincart = false;
+    notifyListeners();
+  }
 
 }
 

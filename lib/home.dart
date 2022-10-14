@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:stmtproviders/cart.dart';
 import 'package:get/get.dart';
+import 'package:stmtproviders/wishlist.dart';
 import 'provider/data.dart';
 
 class Home extends StatefulWidget {
@@ -40,6 +41,16 @@ class _HomeState extends State<Home> {
                 ),
                 label: Text(''),
               ),
+              TextButton.icon(
+                onPressed: () {
+                  Get.to(MyWishlist());
+                },
+                icon: Icon(
+                  Icons.favorite,
+                  color: Colors.white,
+                ),
+                label: Text(''),
+              ),
             ],
           ),
         ),
@@ -65,7 +76,14 @@ class _HomeState extends State<Home> {
                               ),
                               Text(datap.dataModel[index].title),
                               Text(datap.dataModel[index].price),
-                             
+                              ElevatedButton(
+                                onPressed: () {
+                                  datap.addtowishlist(product);
+
+                                  setState(() {});
+                                },
+                                child: product.isincart?Text(product.isincart.toString()):Text('wish'),
+                              ),
                               ElevatedButton(
                                 onPressed: () {
                                   datap.addtocart(product);
