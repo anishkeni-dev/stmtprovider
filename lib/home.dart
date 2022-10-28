@@ -22,7 +22,7 @@ class _HomeState extends State<Home> {
     final data = Provider.of<Data>(context, listen: false);
     data.fetchData();
   }
-
+ bool added = false;
   @override
   Widget build(BuildContext context) {
     final datap = Provider.of<Data>(context);
@@ -78,7 +78,7 @@ class _HomeState extends State<Home> {
                               Text(datap.dataModel[index].price),
                               ElevatedButton(
                                 onPressed: () {
-                                  datap.addtowishlist(product);
+                                  datap.addtowishlist(index);
 
                                   setState(() {});
                                 },
@@ -86,11 +86,27 @@ class _HomeState extends State<Home> {
                               ),
                               ElevatedButton(
                                 onPressed: () {
-                                  datap.addtocart(product);
+                                  if(datap.cartlistbyid.isEmpty)
+                                  {
+                                    datap.addtocart(product);
+                                    added = true;
+                                  }
+                                  else {
+                                    int i =0;
+                                    for (i=0; i<20; i++) {
+                                      if (product.id == datap.cartlistbyid[i].id) {
 
-                                  setState(() {});
+                                        return print('f');
+
+                                      }
+                                      else {
+                                        datap.addtocart(product);
+                                        added = true;
+                                      }
+                                    }
+                                  }
                                 },
-                                child: product.isincart?Text(product.isincart.toString()):Text('add'),
+                                child: added?Text('added'):Text('add'),
                               )
                             ],
                           ),

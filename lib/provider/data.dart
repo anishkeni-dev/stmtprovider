@@ -17,13 +17,17 @@ class Data extends ChangeNotifier{
   late List<DataModel> wishlistbyid = [];
   late double carttotal = 0;
 
- addtocart(element){
-    cartlistbyid.add(element);
-    var productprice = double.parse(element.price);
-    carttotal = carttotal +  productprice;
-    element.isincart= true;
-    notifyListeners();
- }
+ addtocart(prodgot){
+
+        cartlistbyid.add(prodgot);
+        var productprice = double.parse(prodgot.price);
+
+        carttotal = carttotal + productprice;
+
+       prodgot.isincart = true;
+
+   notifyListeners();
+    }
  removefromcart(element){
    cartlistbyid.remove(element);
    element.isincart = false;
@@ -31,9 +35,9 @@ class Data extends ChangeNotifier{
    carttotal = carttotal - productprice;
    notifyListeners();
  }
-  addtowishlist(product){
-    wishlistbyid.add(product);
-    product.isincart= true;
+  addtowishlist(index){
+    wishlistbyid.add(dataModel[index]);
+
     notifyListeners();
   }
   removefromwishlist(element){
