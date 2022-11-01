@@ -10,7 +10,6 @@ class Data extends ChangeNotifier{
 
     dataModel = await getData();
 
-
     notifyListeners();
   }
   late List<DataModel> cartlistbyid = [];
@@ -18,16 +17,24 @@ class Data extends ChangeNotifier{
   late double carttotal = 0;
 
  addtocart(prodgot){
+   var productprice = double.parse(prodgot.price);
+   int index = cartlistbyid.indexWhere((i) => i.id == prodgot.id);
+   print(index);
+   if (index != -1) {
+     //update qty
+     return null;
+   }
+   else {
+     cartlistbyid.add(prodgot);
+     prodgot.isincart = ! prodgot.isincart;
+     carttotal = carttotal + productprice;
+     notifyListeners();
+   }
 
-        cartlistbyid.add(prodgot);
-        var productprice = double.parse(prodgot.price);
+}
 
-        carttotal = carttotal + productprice;
 
-       prodgot.isincart = true;
 
-   notifyListeners();
-    }
  removefromcart(element){
    cartlistbyid.remove(element);
    element.isincart = false;

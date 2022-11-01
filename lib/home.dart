@@ -22,7 +22,7 @@ class _HomeState extends State<Home> {
     final data = Provider.of<Data>(context, listen: false);
     data.fetchData();
   }
- bool added = false;
+
   @override
   Widget build(BuildContext context) {
     final datap = Provider.of<Data>(context);
@@ -58,14 +58,16 @@ class _HomeState extends State<Home> {
           child: FutureBuilder(
               future: datap.fetchData(),
               builder: (BuildContext ctx, AsyncSnapshot) {
-                if (datap.dataModel.isEmpty) {
-                  return CircularProgressIndicator();
-                } else {
+                // if (datap.dataModel.isEmpty) {
+                //   return CircularProgressIndicator();
+                // } else {
                   return Consumer<Data>(builder: (context, datap, child) {
+
                     return ListView.builder(
                       itemCount: datap.dataModel.length,
                       itemBuilder: (context, index) {
                         var product = datap.dataModel[index];
+                        print(datap.dataModel[index].isincart);
                         return Card(
                           child: Column(
                             children: [
@@ -76,37 +78,20 @@ class _HomeState extends State<Home> {
                               ),
                               Text(datap.dataModel[index].title),
                               Text(datap.dataModel[index].price),
+
                               ElevatedButton(
-                                onPressed: () {
-                                  datap.addtowishlist(index);
+                                onPressed: product.isincart?null: () {
+                                  product.isincart?isadded=true:isadded=false;
 
-                                  setState(() {});
+                                  datap.addtocart(product);
+
+
+                                  setState(() {
+
+                                  });
+
                                 },
-                                child: product.isincart?Text(product.isincart.toString()):Text('wish'),
-                              ),
-                              ElevatedButton(
-                                onPressed: () {
-                                  if(datap.cartlistbyid.isEmpty)
-                                  {
-                                    datap.addtocart(product);
-                                    added = true;
-                                  }
-                                  else {
-                                    int i =0;
-                                    for (i=0; i<20; i++) {
-                                      if (product.id == datap.cartlistbyid[i].id) {
-
-                                        return print('f');
-
-                                      }
-                                      else {
-                                        datap.addtocart(product);
-                                        added = true;
-                                      }
-                                    }
-                                  }
-                                },
-                                child: added?Text('added'):Text('add'),
+                                child: isadded?null:Text('add'),
                               )
                             ],
                           ),
@@ -115,7 +100,7 @@ class _HomeState extends State<Home> {
                     );
                   });
                 }
-              }),
+              ),
         ));
   }
 }

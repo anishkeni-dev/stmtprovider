@@ -5,7 +5,7 @@ class DataModel {
   String title;
   String rating;
   String desc;
-  late bool isincart;
+  bool isincart ;
 
   DataModel({
     required this.id,
@@ -14,7 +14,7 @@ class DataModel {
     required this.image,
     required this.rating,
     required this.desc,
-    required this.isincart,
+    this.isincart = false,
   });
 
   factory DataModel.fromJson(Map<String, dynamic> json) {
@@ -25,8 +25,6 @@ class DataModel {
         rating: json['rating']['rate'].toString(),
         image: json['image'],
         desc: json['description'],
-      isincart: false,
-
     );
   }
 }

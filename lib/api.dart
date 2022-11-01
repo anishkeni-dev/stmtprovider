@@ -10,7 +10,6 @@ Future<List<DataModel>> getData() async {
   for(var i = 0; i< responseData.length; i++) {
     DataModel prods = DataModel.fromJson(responseData[i]);
      dataModel.add(prods);
-
   }
   return dataModel;
 
