@@ -26,13 +26,12 @@ class Data extends ChangeNotifier{
    }
    else {
      cartlistbyid.add(prodgot);
-     prodgot.isincart = ! prodgot.isincart;
+     prodgot.isincart = true;
      carttotal = carttotal + productprice;
      notifyListeners();
    }
 
 }
-
 
 
  removefromcart(element){
@@ -42,6 +41,23 @@ class Data extends ChangeNotifier{
    carttotal = carttotal - productprice;
    notifyListeners();
  }
+
+ updateProduct(product, qty) {
+    int index = cartlistbyid.indexWhere((i) => i.id == product.id);
+    cartlistbyid[index].qty = qty;
+    if (cartlistbyid[index].qty == 0) {removefromcart(product);}
+    else null;
+    calculateTotal();
+    notifyListeners();
+  }
+  calculateTotal() {
+    carttotal = 0;
+    cartlistbyid.forEach((f) {
+      carttotal += double.parse(f.price) * f.qty;
+    });
+    notifyListeners();
+  }
+
   addtowishlist(index){
     wishlistbyid.add(dataModel[index]);
 

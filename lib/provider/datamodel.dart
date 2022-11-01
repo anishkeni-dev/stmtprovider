@@ -6,6 +6,7 @@ class DataModel {
   String rating;
   String desc;
   bool isincart ;
+   int qty;
 
   DataModel({
     required this.id,
@@ -15,6 +16,7 @@ class DataModel {
     required this.rating,
     required this.desc,
     this.isincart = false,
+    this.qty = 1,
   });
 
   factory DataModel.fromJson(Map<String, dynamic> json) {

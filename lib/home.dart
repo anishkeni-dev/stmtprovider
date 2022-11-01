@@ -68,6 +68,7 @@ class _HomeState extends State<Home> {
                       itemBuilder: (context, index) {
                         var product = datap.dataModel[index];
                         print(datap.dataModel[index].isincart);
+                        product.isincart?isadded=true:isadded=false;
                         return Card(
                           child: Column(
                             children: [
@@ -77,11 +78,11 @@ class _HomeState extends State<Home> {
                                 height: 100,
                               ),
                               Text(datap.dataModel[index].title),
-                              Text(datap.dataModel[index].price),
+                              Text(datap.dataModel[index].price.toString()),
 
                               ElevatedButton(
-                                onPressed: product.isincart?null: () {
-                                  product.isincart?isadded=true:isadded=false;
+                                onPressed:isadded?null: () {
+
 
                                   datap.addtocart(product);
 
@@ -91,7 +92,7 @@ class _HomeState extends State<Home> {
                                   });
 
                                 },
-                                child: isadded?null:Text('add'),
+                                child:isadded?null:Text('add'),
                               )
                             ],
                           ),
