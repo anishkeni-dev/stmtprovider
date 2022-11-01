@@ -18,7 +18,7 @@ class Data extends ChangeNotifier{
 
  addtocart(prodgot){
    var productprice = double.parse(prodgot.price);
-   int index = cartlistbyid.indexWhere((i) => i.id == prodgot.id);
+   int index = cartlistbyid.indexWhere((item) => item.id == prodgot.id);
    print(index);
    if (index != -1) {
      //update qty
