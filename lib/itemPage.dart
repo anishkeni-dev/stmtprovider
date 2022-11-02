@@ -5,8 +5,6 @@ import 'package:stmtproviders/provider/datamodel.dart';
 import 'package:provider/provider.dart';
 
 class ProductItem extends StatefulWidget {
-  const ProductItem({Key? key}) : super(key: key);
-
   @override
   State<ProductItem> createState() => _ProductItemState();
 }
@@ -15,7 +13,6 @@ class _ProductItemState extends State<ProductItem> {
   @override
   Widget build(BuildContext context) {
     final product = Provider.of<DataModel>(context);
-
     return Card(
       child: Column(
         children: [
@@ -35,8 +32,8 @@ class _ProductItemState extends State<ProductItem> {
               product.toggleFavoriteStatus();
               setState(
                 () {
-                  print(product.id);
-                  //product.addtocart(product);
+                  product.addtocart(product);
+                  // product1.findById();
                 },
               );
             },

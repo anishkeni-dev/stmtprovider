@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'data.dart';
 
 class DataModel with ChangeNotifier {
   int id;
@@ -20,24 +21,12 @@ class DataModel with ChangeNotifier {
     this.isincart = false,
     this.qty = 1,
   });
+
   void toggleFavoriteStatus() {
     isincart = !isincart;
     notifyListeners();
   }
 
-  late List<DataModel> cartlistbyid = [];
-  addtocart(prodgot) {
-    var productprice = double.parse(prodgot.price);
-    int index = cartlistbyid.indexWhere((item) => item.id == prodgot.id);
-    print(index);
-    if (index != -1) {
-      //update qty
-      return null;
-    } else {
-      cartlistbyid.add(prodgot);
-      notifyListeners();
-    }
-  }
   // late List<DataModel> _items = [];
   // List<DataModel> get favItems {
   //   print(_items.where((itme) => itme.isincart).toList());
@@ -53,5 +42,19 @@ class DataModel with ChangeNotifier {
       image: json['image'],
       desc: json['description'],
     );
+  }
+  late List<DataModel> cartlistbyid = [];
+  addtocart(prodgot) {
+    var productprice = double.parse(prodgot.price);
+    print(prodgot.title);
+    int index = cartlistbyid.indexWhere((item) => item.id == prodgot.id);
+    print(index);
+    if (index != -1) {
+      //update qty
+      return null;
+    } else {
+      cartlistbyid.add(prodgot);
+      notifyListeners();
+    }
   }
 }

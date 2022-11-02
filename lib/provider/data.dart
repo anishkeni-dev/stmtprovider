@@ -20,6 +20,7 @@ class Data extends ChangeNotifier {
   }
 
   DataModel findById(String id) {
+    //addtocart(_items.firstWhere((prod) => prod.id == id));
     return _items.firstWhere((prod) => prod.id == id);
   }
 

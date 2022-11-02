@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:stmtproviders/cart.dart';
 import 'package:get/get.dart';
 import 'package:stmtproviders/itemPage.dart';
-import 'package:stmtproviders/provider/datamodel.dart';
 import 'package:stmtproviders/wishlist.dart';
 import 'provider/data.dart';
 
